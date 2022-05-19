@@ -1,0 +1,126 @@
+{
+  "M10": {
+    "AWS": {
+      "memory": 2,
+      "CPU": 2 
+    },
+    "Azure": {
+      "memory": 2,
+      "CPU": 1
+    },
+    "GCP": {
+      "memory": 1.7,
+      "CPU": 0.5
+    }
+  },
+  "M20": {
+    "AWS": {
+      "memory": 4,
+      "CPU": 2 
+    },
+    "Azure": {
+      "memory": 4,
+      "CPU": 2
+    },
+    "GCP": {
+      "memory": 3.75,
+      "CPU": 1
+    }
+  },
+  "M30": {
+    "AWS": {
+      "memory": 8,
+      "CPU": 2 
+    },
+    "Azure": {
+      "memory": 8,
+      "CPU": 2
+    },
+    "GCP": {
+      "memory": 7.5,
+      "CPU": 2
+    }
+  },
+  "M40": {
+    "AWS": {
+      "memory": 16,
+      "CPU": 4
+    },
+    "Azure": {
+      "memory": 16,
+      "CPU": 2
+    },
+    "GCP": {
+      "memory": 15,
+      "CPU": 4
+    }
+  },
+  "M50": {
+    "AWS": {
+      "memory": 32,
+      "CPU": 8
+    },
+    "Azure": {
+      "memory": 32,
+      "CPU": 8
+    },
+    "GCP": {
+      "memory": 30,
+      "CPU": 8
+    }
+  },
+  "M60": {
+    "AWS": {
+      "memory": 64,
+      "CPU": 16
+    },
+    "Azure": {
+      "memory": 64,
+      "CPU": 16
+    },
+    "GCP": {
+      "memory": 60,
+      "CPU": 16
+    }
+  },
+  "M80": {
+    "AWS": {
+      "memory": 128,
+      "CPU": 32
+    },
+    "Azure": {
+      "memory": 128,
+      "CPU": 32
+    },
+    "GCP": {
+      "memory": 120,
+      "CPU": 32
+    }
+  },
+  "M90": {
+    "Azure": {
+      "memory": 140,
+      "CPU": 20
+    }
+  },
+  "M140": {
+    "AWS": {
+      "memory": 192,
+      "CPU": 48
+    }
+  },
+  "M200": {
+    "AWS": {
+      "memory": 256,
+      "CPU": 64
+    },
+    "Azure": {
+      "memory": 256,
+      "CPU": 64
+    },
+    "GCP": {
+      "memory": 240,
+      "CPU": 64
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "co2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "co2.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "digest-fetch": "^1.2.1",
+    "node-fetch": "^2.6.6",
+    "readline-sync": "^1.4.10"
+  }
+}
