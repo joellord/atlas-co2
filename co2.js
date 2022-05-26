@@ -108,7 +108,7 @@ async function main() {
     let regionName = c.providerSettings.regionName.toUpperCase();
 
     let PUE = 1.67;
-    if (providerName === "GCP") PUE = 1.11;
+    if (providerName === "GCP") PUE = 1.10;
     if (providerName === "AZURE") PUE = 1.125;
     if (providerName === "AWS") PUE = 1.2;
     if (VERBOSE) console.log(`Using a PUE factor ${PUE} for provider ${providerName}`);
@@ -148,6 +148,7 @@ async function main() {
   }).filter(c => c);
 
   console.log(`Found ${processes.length} processes running on ${clusters.length} clusters`);
+  if (processes.length === 0) process.exit();
 
   let processUsage = await Promise.all(processes.map(async p => {
     if (VERBOSE) console.log(`Calculating measurements for ${p.id}`);
@@ -184,7 +185,8 @@ async function main() {
   // Storage energy consumption used 0.001 W per GB
   // Average PUE = 1.67
   let energies = processUsage.map(p => {
-    let energy = GRANULARITY_PARAMS.runningTimeHours * (p.nCpu * 12.4 * p.cpuUsage + p.memoryAvail * 0.3725 + p.diskSizeGb * 0.001) * p.PUE * 0.001 * p.gCO2ekWh;
+    console.log(`${GRANULARITY_PARAMS.runningTimeHours} * (${p.nCpu} * 12.4 * ${p.cpuUsage/100} + ${p.memoryAvail} * 0.3725 + ${p.diskSizeGb} * 0.001) * ${p.PUE} * 0.001 * ${p.gCO2ekWh};`);
+    let energy = GRANULARITY_PARAMS.runningTimeHours * (p.nCpu * 12.4 * p.cpuUsage/100 + p.memoryAvail * 0.3725 + p.diskSizeGb * 0.001) * p.PUE * 0.001 * p.gCO2ekWh;
     return energy;
   });
 
@@ -193,10 +195,10 @@ async function main() {
   console.log(`🏭  Total grams of carbon emitted in the last ${GRANULARITY_PARAMS.runningTimeHours} hours: ${totalCarbon}`);
   console.log(`🗓️  Assuming this has been the average over the last 30 days.`);
   console.log(`That is a monthly equivalent to:`);
-  console.log(` 🏭  ${(totalCarbon/1000*30).toFixed(2)} kg of CO2 equivalent`)
+  console.log(` 🏭  ${(totalCarbon*30/1000).toFixed(2)} kg of CO2 equivalent`)
   console.log(` 🚗  ${(totalCarbon*30/251).toFixed(2)} km driven in a car`);
   console.log(` 🛩️   ${(totalCarbon*30/570000).toFixed(2)} trip from JFK -> SFO`);
-  console.log(` 🌳  ${(totalCarbon/1000*30*0.11).toFixed(2)} trees would need to be planted every month to offset`)
+  console.log(` 🌳  ${(totalCarbon*30/(1000*0.11)).toFixed(2)} trees would need to be planted every month to offset`)
 }
 
 main();
